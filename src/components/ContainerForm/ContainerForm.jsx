@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import {InputStyle,BtnStyle, ContainerLoginStyle} from './ContainerFormStyle'
 
-const URLBase = `http://localhost:27017/`
+const URLBaseLocalhost = `http://localhost:27017/`
+const URLBaseHosting = `https://login-jaliscoprueba.vercel.app/`
 
 export const ContainerForm = () => {
   const [inputUser, setUser] = useState('')
@@ -16,7 +17,7 @@ export const ContainerForm = () => {
   const showUsers = async (e) => {
     e.preventDefault()
     
-   const Users = await fetch(`${URLBase}showUsers`)
+   const Users = await fetch(`${URLBaseHosting}showUsers`)
    const data = await Users.json()
    console.log(data)
 
@@ -27,7 +28,7 @@ export const ContainerForm = () => {
     e.preventDefault()
     const userJSON = JSON.stringify(targetUser(e))
   
-    await fetch(`${URLBase}createUser`,{
+    await fetch(`${URLBaseHosting}createUser`,{
       method: "POST",
       headers: {
         "Content-Type": "application/json"
