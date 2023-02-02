@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import {InputStyle,BtnStyle, ContainerLoginStyle} from './ContainerFormStyle'
 
 const URLBaseLocalhost = `http://localhost:27017/`
-const URLBaseHosting = `https://login-jaliscoprueba.vercel.app/`
+
+//debe ser el url donde esta alojado el backend
+const URLBaseHosting = `https://pruebabd-api-production.up.railway.app/`
 
 export const ContainerForm = () => {
   const [inputUser, setUser] = useState('')
@@ -24,6 +26,7 @@ export const ContainerForm = () => {
   
 
   }
+
   const addUser = async (e) => {
     e.preventDefault()
     const userJSON = JSON.stringify(targetUser(e))
