@@ -22,9 +22,7 @@ export const ContainerForm = () => {
    const Users = await fetch(`${URLBaseHosting}showUsers`)
    const data = await Users.json()
    console.log(data)
-
-  
-
+   
   }
 
   const addUser = async (e) => {
@@ -40,14 +38,29 @@ export const ContainerForm = () => {
     })
 
    }
+   const login = async (e) => {
+    e.preventDefault()
+    const userJSON = JSON.stringify(targetUser(e))
+  
+    await fetch(`${URLBaseHosting}loginDB`,{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body:userJSON
+    })
+
+   }
 
   return (
     <ContainerLoginStyle>
        <h2>Login</h2>
        <InputStyle placeholder='Usuario' data-username={inputUser} onChange={(e) => setUser(e.target.value)}/>
        <InputStyle placeholder='Contraseña' data-password={inputPassword}type={'password'} onChange={(e) => setPassword(e.target.value)}/>
-       <BtnStyle data-username={inputUser} data-password={inputPassword} onClick={(e)=> addUser(e)}>Enviar Datos</BtnStyle>
+       <BtnStyle data-username={inputUser} data-password={inputPassword} onClick={(e)=> login(e)}>Iniciar sesion</BtnStyle>
        <BtnStyle onClick={(e)=> showUsers(e)}>Mostrar Usuarios</BtnStyle>
+       <BtnStyle data-username={inputUser} data-password={inputPassword} onClick={(e)=> addUser(e)}>Crear Usuario</BtnStyle>
+
     </ContainerLoginStyle>
   )
 }
